@@ -1,12 +1,19 @@
-/* Fondo global del cuerpo */
-body {
+
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  margin:0;
   background-image: url('/heart-3124301_1280.jpg');
-  background-repeat: no-repeat; /* Evita la repetición */
-  background-size: cover; /* Asegura que la imagen cubra toda el área del fondo */
-  background-attachment: fixed; /* La imagen permanece fija al hacer scroll */
-  background-position: center center; /* Centra la imagen horizontal y verticalmente */
-  min-height: 100vh; /* Asegura que el fondo ocupe al menos la altura completa de la pantalla */
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  background-attachment: fixed; 
+  background-position: center center; 
+  min-height: 100vh; 
 }
 
 body::after {
@@ -16,45 +23,40 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.2); /* Fondo blanco semitransparente */
+  background: rgba(255, 255, 255, 0.4); 
   z-index: -1; /* Asegura que el overlay quede detrás del contenido */
 }
 
 /* Contenedor principal */
 .main-container {
-  
- 
   margin: 0 auto;
-  padding: 0 16px; /* Padding horizontal */
+  padding: 0 16px; 
   width: 100%;
-  margin-top: 150px; /* Empuja todo hacia abajo */
+  margin-top: 150px; 
   
 }
 
 /* Estilo para la cuadrícula de álbumes */
 .albums-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
- margin-inline: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajuste automático de columnas */
+  gap: 20px; /* Espacio entre las imágenes */
+  margin-inline: 30px;
   margin-top: 100px;
   box-sizing: border-box;
- /* Permite que el grid sea desplazable verticalmente */
-  max-height: 100vh; /* Asegura que el grid no se salga de la pantalla */
-  /* Cambiar a tres columnas en pantallas medianas */
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  justify-content: center;
 }
 
 /* Estilo para las tarjetas del álbum */
 .album-card {
+  max-width: 300px; /* Limita el ancho máximo de cada tarjeta */
+  margin: 0 auto; /* Centra la tarjeta dentro de su celda */
   background-color: white;
   border: 1px solid #d1d5db; 
   border-radius: 0.5rem; 
   padding: 16px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
   text-align: center;
-  margin: 20px;
 }
 
 /* Estilo para las imágenes */
@@ -79,31 +81,32 @@ button {
 }
 
 button:hover {
-  background-color: #f9a8d4; 
-  transform: scale(1.05); /* Escala ligeramente más grande */
+  background-color: #f0c7dd; 
+  transform: scale(1); /* Escala ligeramente más grande */
 }
 
 /* Estilo para el título del visor de fotos */
 .photo-viewer-title {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: whitesmoke;
   position: sticky; /* Mantiene el título en la parte superior */
   top: 0;
-  left: 0;
+
   width: 100%;
   font-size: 50px;
   color: rgba(158, 156, 156, 0.979); 
-  padding: 10px 20px;
   text-align: center;
   z-index: 10;
-  margin-top: 0;
+
 }
 
 .detail_pic {
   max-width: 100%; /* Imagen no más grande que el contenedor */
   height: auto; /* Mantener proporción de aspecto */
-  border-radius: 8px; /* Bordes redondeados para un toque moderno */
+  border-radius: 30px; /* Bordes redondeados para un toque moderno */
   margin: 0 auto; /* Centrar si es necesario */
   display: block; /* Asegurar centrado horizontal */
+  object-fit: contain;
+  padding: 10px;
 }
 
 
@@ -118,14 +121,15 @@ button:hover {
   color: #555; 
   line-height: 1.5;
   margin-top: 10px; 
-  max-width: 700px; /* Limita el ancho para que no se estire demasiado */
+  max-width: 700px; 
 }
 .photo-title {
   color: rgb(149, 148, 148);
-  font-size: 1.5rem; /* Tamaño del texto */
+  font-size: 1.8rem; /* Tamaño del texto */
   font-weight: 700; /* Texto en negrita */
   text-align: center; /* Centrar el título */
-  margin-bottom: 50px; /* Espacio debajo del título */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  margin-top: 40px;
   font-family: 'Montserrat', sans-serif; /* Usar la fuente importada */
 }
 
@@ -135,7 +139,7 @@ button:hover {
 
 
 .image_desc {
-  font-size: 20px; /* Ajusta el tamaño de la fuente */
+  font-size: 30px; /* Ajusta el tamaño de la fuente */
   color: #555; /* Color de texto gris suave */
   line-height: 1.5; /* Espaciado entre líneas */
   margin-top: 10px; /* Espacio superior para la descripción */
@@ -149,16 +153,18 @@ button:hover {
     
 }
 .album_filter {
+  background-color: whitesmoke;
   position: fixed; /* Mantiene el filtro fijo */
-  top: 60px; /* Ajusta según el espacio necesario desde el título */
+  top: 20px; /* Ajusta según el espacio necesario desde el título */
   left: 50%; /* Centra horizontalmente */
   transform: translateX(-50%); /* Compensa el desplazamiento del ancho del contenedor */
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
   width: 100%; /* Puede ser 100% o un tamaño fijo */
-  max-width: 500px;
-  padding: 1px;
-  margin-top: 50px;
+  
+  padding-bottom: 20px;
+  margin-top: 30px;
+  
   z-index: 100; /* Asegura que esté sobre otros elementos */
 }
 
@@ -169,6 +175,9 @@ button:hover {
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+  
 }
 
 .filter-button-container input {
@@ -177,6 +186,8 @@ button:hover {
   width: 200px;
   outline: none; /* Quita el borde de enfoque predeterminado */
   border: none;  /* Quita el borde del input */
+  background-color: #f0c7dd; /* Color de fondo rosa */
+  color: white; /* Color del texto */
 }
 
 .filter-button-container button {
